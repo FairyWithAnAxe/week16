@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap" rel="stylesheet">
+    <style>
+        
+        body {
+            background: #A4DADA;
+            font-family: 'Pattaya', sans-serif;
+        }
+
+        .glow-button {
+            text-decoration: none;
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 10px 20px;
+            border-radius: 50%;
+            box-shadow: 0 0 40px 40px #F137A6 inset, 0 0 0 0 #F137A6;
+            font-family: 'Pattaya', sans-serif;
+            font-weight: 400;
+            font-size: 22px;
+            letter-spacing: 2px;
+            transition: .15s ease-in-out;
+        }
+
+        .glow-button:hover {
+            box-shadow: 0 0 10px 0 #F137A6 inset, 0 0 10px 4px #F137A6;
+            color: #F137A6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="glow-button" onclick="sumInput();">ТЫК</button>
+
+    <div id="elements"></div>
+
+    <div id="sum"></div>
+
+    <script>
+        function sumInput() {
+            let numbers = [];
+            let sum = 0;
+
+            document.getElementById('sum').innerHTML = '';
+            document.getElementById('elements').innerHTML = '';
+
+            for (;;) {
+                let number = prompt('Введите число', '');
+                if (number == '' || number === null || isNaN(number)) break;
+                numbers.push(number);
+                sum += +number;
+            }
+            //alert (sum);
+            document.getElementById('sum').innerHTML += 'Сумма элементов массива равна ' + sum;
+
+            //сортировка массива по возрастанию
+            numbers.sort(function (a, b) {
+                return a - b;
+            })
+            //alert (numbers);
+            document.getElementById('elements').innerHTML += numbers;
+
+            //или
+
+            /*for (let number of numbers){
+                //alert (number);
+                document.getElementById ('elements').innerHTML+= number+' ';
+            }*/
+
+        }
+    </script>
+</body>
+
+</html>
