@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        .calc {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            width: 30%;
+            border: #2EE59D 3px solid;
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            margin: 0 auto;
+            margin-top: 5vw;
+        }
+
+        .calc__title {
+            margin: 0;
+            text-align: center;
+            background-color: #2EE59D;
+            color: whitesmoke;
+            font-size: 1.5em;
+            padding: 1.3vw;
+        }
+
+        #result {
+            font-size: 1.3em;
+            margin: 2vw 0;
+        }
+
+        .calc__body__block {
+            display: flex;
+            justify-content: space-between;
+            margin: 1vw;
+        }
+
+        #countBtn {
+            background-color: #2EE59D;
+            color: whitesmoke;
+            border: none;
+            border-radius: 10px;
+            margin: 0 auto;
+            margin-bottom: 1vw;
+            margin-left: 150px;
+            padding: 0.5vw;
+        }
+
+        
+
+        #insurance {
+            margin-right: 0.5vw;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="calc">
+        <h1 class="calc__title">Калькулятор стоимости авто</h1>
+        <div class="calc__body" id="calcMain">
+
+            <div class="calc__body__block">
+                <label for="brand">Марка</label>
+                <select name="brand" id="brand">
+                    <option value="1000">Audi</option>
+                    <option value="1200">Volvo</option>
+                    <option value="1500">BMW</option>
+                    <option value="3000">Mazeratti</option>
+                    <option value="5000">Porshe</option>
+                </select>
+            </div>
+
+
+            <div class="calc__body__block">
+                <label for="fuel">Тип топлива</label>
+                <select name="fuel" id="fuel">
+                    <option value="100">Бензин</option>
+                    <option value="200">Дизельное топливо</option>
+                    <option value="300">Электрический</option>
+                </select>
+            </div>
+
+            <div class="calc__body__block">
+                <label for="volume">Объём двигателя, см<sup>3</sup></label>
+                <input type="text" name="volume" id="volume" class="textReq">
+            </div>
+
+            <div class="calc__body__block">
+                <label for="power">Мощность, л.с.</label>
+                <input type="text" name="power" id="power" class="textReq">
+            </div class="calc__body__block">
+
+            <div class="calc__body__block">
+                <span>Возраст автомобиля</span>
+                <span class="calc__main__block__age">
+                    <p>
+                        <input type="radio" name="ageBtn" value="500">
+                        <label for="ageBtn">Меньше 3 лет</label>
+                    </p>
+                    <p>
+                        <input type="radio" name="ageBtn" value="300">
+                        <label for="ageBtn">От 3 до 5 лет</label>
+                    </p>
+                    <p>
+                        <input type="radio" name="ageBtn" value="200">
+                        <label for="ageBtn">От 5 до 7 лет</label>
+                    </p>
+                    <p>
+                        <input type="radio" name="ageBtn" value="150">
+                        <label for="ageBtn">Больше 7 лет</label>
+                    </p>
+                </span>
+            </div>
+
+
+            <div class="calc__body__block ">
+                <span for="receiver">Получатель</span>
+                <span class="receiverBlock">
+                    <p>
+                        <input type="radio" name="receiver" value='100'>
+                        <label for="receiver">Физическое лицо</label>
+                    </p>
+                    <p>
+                        <input type="radio" name="receiver" value='300'>
+                        <label for="receiver">Юридическое лицо</label>
+                    </p>
+                </span>
+            </div>
+            <!--<div class="calc__main__block">
+                <input type="checkbox" name="insurance" id="insurance" value='300'>
+                <label for="insuranse">Хочу включить страховку в итоговую стоимость</label>
+            </div>
+        </div>-->
+            <button id='countBtn' onclick="countPrice();">Рассчитать</button>
+    </section>
+
+    <script>
+        let requirments = [];
+        let textRequirments = [];
+        let options = [];
+        let arr = [];
+
+
+        function countPrice() {
+            textRequirments = Array.from(document.querySelectorAll('.textReq'));
+            requirments = Array.from(document.querySelectorAll('input:checked'));
+            options = Array.from(document.querySelectorAll('option:checked'));
+
+            arr = requirments.concat(textRequirments, options);
+            let sum = 0;
+            for (let i = 0; i < arr.length; i++) {
+                sum += (+arr[i].value);
+            }
+            document.getElementById('calcMain').style.textAlign = 'center';
+            document.getElementById('calcMain').innerHTML = `<div id = 'result'> Final sum is ${sum} </div>`;
+            return `Final sum is ${sum}`;
+        }
+    </script>
+</body>
+
+</html>
